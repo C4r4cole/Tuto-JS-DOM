@@ -96,5 +96,34 @@ window.addEventListener("scroll", () => {
 // Form Events
 
 const inputname = document.querySelector('input[type="text"]');
+const select = document.querySelector("select");
+const form = document.querySelector("form");
+const formBox = document.getElementById("formBox");
+let pseudo = "";
+let language = "";
 
-console.log(inputname);
+inputname.addEventListener("input", (e) => {
+  pseudo = e.target.value;
+});
+
+select.addEventListener("input", (e) => {
+  language = e.target.value;
+});
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  if (cgv.checked) {
+    formBox.innerHTML = `
+    <h3>Pseudo : ${pseudo}</h3>
+    <h4>Langage préféré : ${language}</h4>
+    `;
+  } else {
+    alert("Veuillez accepter les CGV");
+  }
+});
+
+//-------------------------------------------------------------
+// Load event (se déclenche une fois que l'entièreté du document est chargé)
+
+window.addEventListener("load", () => {});
