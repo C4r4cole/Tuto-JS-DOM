@@ -20,7 +20,6 @@ btn2.addEventListener("click", () => {
 });
 
 //--------------------------------------------------------
-
 // Mouse events
 
 const mousemove = document.querySelector(".mousemove");
@@ -126,4 +125,17 @@ form.addEventListener("submit", (e) => {
 //-------------------------------------------------------------
 // Load event (se déclenche une fois que l'entièreté du document est chargé)
 
-window.addEventListener("load", () => {});
+window.addEventListener("load", () => {
+  console.log("Document chargé");
+});
+
+// -------------------------------------------------------------
+// ForEach
+
+const boxes = document.querySelectorAll(".box");
+
+boxes.forEach((box) => {
+  box.addEventListener("click", (e) => {
+    e.target.style.transform = "scale(0.7)";
+  });
+});
