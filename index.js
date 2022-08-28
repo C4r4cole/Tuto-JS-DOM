@@ -1,3 +1,4 @@
+// le DOM (Document object model)
 //Click events
 
 const capitale = document.querySelector(".click-event");
@@ -126,7 +127,7 @@ form.addEventListener("submit", (e) => {
 // Load event (se déclenche une fois que l'entièreté du document est chargé)
 
 window.addEventListener("load", () => {
-  console.log("Document chargé");
+  // console.log("Document chargé");
 });
 
 // -------------------------------------------------------------
@@ -138,4 +139,90 @@ boxes.forEach((box) => {
   box.addEventListener("click", (e) => {
     e.target.style.transform = "scale(0.7)";
   });
+});
+
+// ---------------------------------------------------------------
+// Bubbling vs Usecapture
+
+// Un troisième paramètre peut-être ajouté à addEventListener : False (par défault en Bubbling) ou true (en useCapture). Quand on ajoute le paramètre true, l'addEvent listener vient se jouer en premier.
+
+// Bubling => de Base, l'addEventListener est joué à la fin
+document.body.addEventListener("click", () => {
+  console.log("Click 1");
+});
+
+// Usecapture
+document.body.addEventListener(
+  "click",
+  () => {
+    console.log("Click 2");
+  },
+  true
+);
+
+// -------------------------------------------------------------
+// stop propagation
+
+// capitale.addEventListener("click", (e) => {
+//   alert("hello");
+//   e.stopPropagation();
+// });
+
+//-----------------------------------------------------------
+//le BOM (Browser object model)
+
+// console.log(window.innerHeight);
+// console.log(window.scrollY);
+// window.open("http://google.com", "un titre", "height=300 width=600")
+// window.close()
+
+//Evenements adossé à window
+//alert("hello")
+
+//confirm
+btn2.addEventListener("click", () => {
+  confirm("Voulez vous vraiment vous tromper ?");
+});
+
+//prompt
+let answer;
+
+btn1.addEventListener("click", () => {
+  answer = prompt("Entrez votre nom");
+  capitale.innerHTML += "<h3>Bravo à toi " + answer + "</h3>";
+});
+
+//setTimeOut (compte à rebours avant de déclencher la fonction. le dernier chiffre (ici 2000) est en millisecondes.)
+setTimeout(() => {
+  capitale.style.borderRadius = "300px";
+}, 2000);
+
+//setInterval
+// let interval = setInterval(() => {
+//   document.body.innerHTML += "<div class='box'> <h2>Nouvelle boite</h2> </div>";
+// }, 1000);
+
+// document.body.addEventListener("click", () => {
+//   clearInterval(interval);
+// });
+
+// Location
+// console.log(location.href);
+// console.log(location.host);
+// console.log(location.pathname);
+// Location.replace("http://youtube.fr");
+
+//navigator
+// console.log(navigator.userAgent);
+
+//History
+// console.log(history);
+// window.history.back();
+// history.go(-2);
+
+// -----------------------------------------------------------
+// SetProperty
+window.addEventListener("mousemove", (e) => {
+  nav.style.setProperty("--x", e.layerX + "px");
+  nav.style.setProperty("--y", e.layerY + "px");
 });
